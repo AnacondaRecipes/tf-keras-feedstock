@@ -8,6 +8,8 @@ package:
 source:
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/tf_keras-{{ version }}.tar.gz
     sha256: ebf744519b322afead33086a2aba872245473294affd40973694f3eb7c7ad77d
+    patches:
+      - 0001-fix-import-error-exception.patch
   - fn: LICENSE
     url: https://raw.githubusercontent.com/keras-team/tf-keras/v2.18.0/LICENSE
     sha256: 58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd
