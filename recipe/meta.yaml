@@ -26,7 +26,6 @@ requirements:
     # added scipy from requirements.txt becaus it seems to be used in production code in tf_keras/preprocessing/image.py
     # and is not explicitly listed as an optional dependency
     - scipy
-    - numpy >=1.26.0,<2.1.0
     - tensorflow >=2.17,<2.18
 
 test:
