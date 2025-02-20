@@ -26,6 +26,7 @@ requirements:
     - python
     - setuptools
     - pip
+    - wheel
   run:
     - python
     # added scipy from requirements.txt becaus it seems to be used in production code in tf_keras/preprocessing/image.py
