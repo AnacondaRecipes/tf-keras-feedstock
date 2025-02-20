@@ -46,10 +46,17 @@ test:
 
 about:
   home: https://keras.io/
-  dev_url: https://github.com/keras-team/tf-keras
   summary: Deep learning for humans.
+  description: |
+    Keras is an API designed for human beings, not machines. Keras follows best practices for reducing cognitive load:
+    it offers consistent & simple APIs, it minimizes the number of user actions required for common use cases, and it
+    provides clear & actionable error messages. Keras also gives the highest priority to crafting great documentation
+    and developer guides.
   license: Apache-2.0
+  license_family: Apache
   license_file: LICENSE
+  doc_url: https://www.tensorflow.org/api_docs/python/tf/keras
+  dev_url: https://github.com/keras-team/tf-keras
 
 extra:
   recipe-maintainers:
