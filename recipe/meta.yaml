@@ -13,6 +13,8 @@ source:
     sha256: 58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd
 
 build:
+  # skip win because of missing tf>2.10
+  skip: True  # [win]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   number: 0
 
