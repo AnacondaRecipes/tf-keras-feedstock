@@ -29,7 +29,7 @@ requirements:
     - wheel
   run:
     - python
-    # added scipy from requirements.txt becaus it seems to be used in production code in tf_keras/preprocessing/image.py
+    # added scipy from requirements.txt because it seems to be used in production code in tf_keras/preprocessing/image.py
     # and is not explicitly listed as an optional dependency
     - scipy
     - tensorflow >=2.17,<2.18
