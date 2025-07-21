@@ -1,5 +1,5 @@
 {% set name = "tf-keras" %}
-{% set version = "2.17.0" %}
+{% set version = "2.18.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,17 +7,16 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/tf_keras-{{ version }}.tar.gz
-    sha256: fda97c18da30da0f72a5a7e80f3eee343b09f4c206dad6c57c944fb2cd18560e
+    sha256: ebf744519b322afead33086a2aba872245473294affd40973694f3eb7c7ad77d
   - fn: LICENSE
     url: https://raw.githubusercontent.com/keras-team/tf-keras/v{{ version }}/LICENSE
     sha256: 58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd
 
 build:
-  # skip win because of missing tf>2.10
-  skip: True  # [win or s390x]
   # skip osx-64 because of failed import of tf-keras:
   # ImportError: cannot import name 'training_distributed_v1' from 'tensorflow.python.keras.engine'
-  skip: True  # [osx and x86_64]
+  # tensorflow unavailable for python 3.13
+  skip: True  # [py>=313 or (osx and x86_64)]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   number: 0
 
@@ -32,13 +31,15 @@ requirements:
     # added scipy from requirements.txt because it seems to be used in production code in tf_keras/preprocessing/image.py
     # and is not explicitly listed as an optional dependency
     - scipy
-    - tensorflow >=2.17,<2.18
+    - tensorflow >=2.18.0,<2.19.0
 
 test:
   imports:
     - tf_keras
   commands:
-    - pip check
+      # Skip pip check on Windows due to conda/pip metadata conflict:
+      # tf-keras conda package references pip tensorflow dependency but we have conda tensorflow
+    - pip check  # [not win]
   requires:
     - pip
     - python
