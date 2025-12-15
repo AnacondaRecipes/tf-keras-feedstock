@@ -34,9 +34,7 @@ test:
   imports:
     - tf_keras
   commands:
-      # Skip pip check on Windows due to conda/pip metadata conflict:
-      # tf-keras conda package references pip tensorflow dependency but we have conda tensorflow
-    - pip check  # [not win]
+    - pip check
   requires:
     - pip
     - python
