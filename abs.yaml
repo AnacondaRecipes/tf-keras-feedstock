@@ -1,3 +1,0 @@
-channels:
-  - build/label/build
-  - https://staging.continuum.io/pbp/fs/tensorflow-feedstock/pr14/b2f25b0
