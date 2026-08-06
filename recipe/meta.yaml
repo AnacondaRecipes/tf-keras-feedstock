@@ -29,6 +29,7 @@ requirements:
     # and is not explicitly listed as an optional dependency
     - scipy
     - tensorflow >=2.21.0,<2.22.0
+    # not listed in setup.py, but neede for proper tensorflow-hub build
     - tensorboard >=2.21.0
 
 test:
