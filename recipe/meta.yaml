@@ -1,34 +1,36 @@
 {% set name = "tf-keras" %}
-{% set version = "2.20.1" %}
+{% set version = "2.21.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/tf_keras-{{ version }}.tar.gz
-    sha256: 884be5938fb0b2b53b1583c1ae2b660ef87215377c29b5b6a77fd221b472aeaf
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace("-", "_") }}-{{ version }}.tar.gz
+    sha256: f9af0f2546cd5532de0fae7a481f34a1ca2253737d4cd1000f6b713dc733f770
   - fn: LICENSE
-    url: https://raw.githubusercontent.com/keras-team/tf-keras/v{{ version }}/LICENSE
+    url: https://raw.githubusercontent.com/keras-team/{{ name }}/v{{ version }}/LICENSE
     sha256: 58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd
 
 build:
-  skip: True  # [py>313]
+  skip: true  # [py<310 or py>313]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   number: 0
 
 requirements:
   host:
     - python
-    - setuptools
     - pip
+    - setuptools
     - wheel
   run:
     - python
     # added scipy from requirements.txt because it seems to be used in production code in tf_keras/preprocessing/image.py
     # and is not explicitly listed as an optional dependency
     - scipy
-    - tensorflow >=2.20.0,<2.21.0
+    - tensorflow >=2.21.0,<2.22.0
+    # not listed in setup.py, but neede for proper tensorflow-hub build
+    - tensorboard >=2.21.0
 
 test:
   imports:
